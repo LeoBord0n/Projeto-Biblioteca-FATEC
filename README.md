@@ -12,4 +12,11 @@ A ideia da interface, é utilizar um suposto login de ''ADM'' da faculdade, para
 
 (Todos dados de nome e CPF são fictícios.)
 
+Adicionando um novo aluno na database:
+
+![image](https://github.com/LeoBord0n/Projeto-Biblioteca-FATEC/assets/141795876/9d3e78f3-0294-45ad-bf7e-dd204d6bfed7)
+![image](https://github.com/LeoBord0n/Projeto-Biblioteca-FATEC/assets/141795876/f1b1f15f-3a96-470b-8ae7-9ee30c587a85)
+
+
+
 Até então, o projeto está em andamento. Estou na fase de integrar mais opções na interface e trabalhar para conseguir codificar a transferência ao arquivo .db
