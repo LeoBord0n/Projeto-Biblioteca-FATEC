@@ -19,4 +19,4 @@ Adicionando um novo aluno na database:
 
 
 
-Até então, o projeto está em andamento. Estou na fase de integrar mais opções na interface e trabalhar para conseguir codificar a transferência ao arquivo .db
+Até então, o projeto está em andamento. Estou na fase de integrar mais opções na interface e completar o CRUD. Por enquanto, só é possível adicionar novos alunos na database. 
