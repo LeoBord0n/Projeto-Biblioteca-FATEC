@@ -1,7 +1,7 @@
 import PySimpleGUI as sg 
 import sqlite3
-afatec = sqlite3.connect('afatec.db')
-cursor = afatec.cursor()
+biblioteca = sqlite3.connect('biblioteca.db')
+cursor = biblioteca.cursor()
 
 
 sg.theme ('LightBlue7')
@@ -19,6 +19,7 @@ layoutp = [
 layp = [
     [sg.Text('Digitar nome do aluno'), sg.Input(key='aluno')],
     [sg.Button('Pesquisar'), sg.Button('Adicionar novo')],
+    [sg.Button('Editar dado de aluno')],
     [sg.Button('Sair')],
     [sg.Listbox(values=[], size=(40,10), key='aluno_list')]
 ]
@@ -26,10 +27,19 @@ layp = [
 adn = [
     [sg.Text('Nome do aluno:      '), sg.Input(key='cadastro')],
     [sg.Text('CPF do aluno:       '), sg.Input(key='cpf')],
+    [sg.Text('Email do aluno'), sg.Input(key='email')],
     [sg.Text('Livro alocado:      '), sg.Input(key='livro')],
-    [sg.Text('Data de devolução:  '), sg.Input(key='idade')],
+    [sg.Text('Data de devolução DD/MM/AA:  '), sg.Input(key='idade')],
     [sg.Button('Adicionar aluno'), sg.Button('Sair')]
 ]
+def janela4(values4):
+    deseja = [
+    sg.Text('Deseja adicionar um novo aluno?'),
+    sg.Button('Sim'), sg.Button('Não')
+]
+    window4 = sg.Window('Adicionar novo aluno?', layout=deseja)
+    while True:
+        event, values4 = window4.read()
 
 #Sistema de close window
 def login(values):
@@ -61,9 +71,29 @@ def janela3(values):
     window3 = sg.Window('Adicionar aluno', layout=adn)
     while True:
         event3, values3 = window3.read()
-        if event3 == sg.WIN_CLOSED or event == 'Sair':
+        if event3 == sg.WIN_CLOSED or event3 == 'Sair':
             break
-        window3.close()
+        elif event3 == 'Adicionar aluno':
+            nome = values3['cadastro']
+            cpf = values3['cpf']
+            email = values3['email']
+            livro = values3['livro']
+            dev = values3['idade']
+            while True:
+                if len(nome) <3 or len(cpf) <3 or len(email) <3 or len(livro) <3 or len(dev) <3:
+                    sg.popup('Nenhum dado pode ter menos de 3 carácteres. ')
+                else:
+                    cursor.execute("INSERT INTO aluno VALUES (?,?,?,?,?)",(nome,cpf,email,livro,dev))
+                    biblioteca.commit()
+                    biblioteca.close()
+            
+            sg.popup('Aluno adicionado com sucesso! ')
+            janela4(values3)
+
+
+
+            
+
 
 window = sg.Window('Login biblioteca FATEC', layout=layoutp)
 while True:
